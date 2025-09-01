@@ -433,7 +433,7 @@ impl EthereumHardfork {
             (Self::Shanghai, ForkCondition::Timestamp(MAINNET_SHANGHAI_TIMESTAMP)),
             (Self::Cancun, ForkCondition::Timestamp(MAINNET_CANCUN_TIMESTAMP)),
             (Self::Prague, ForkCondition::Timestamp(MAINNET_PRAGUE_TIMESTAMP)),
-            (Self::Eip7805, ForkCondition::Timestamp(MAINNET_PRAGUE_TIMESTAMP)),
+            (Self::Eip7805, ForkCondition::Never),
         ]
     }
 
@@ -709,6 +709,17 @@ pub trait EthereumHardforks {
         self.is_ethereum_fork_active_at_timestamp(EthereumHardfork::Amsterdam, timestamp)
     }
 
+    /// Convenience method to check if [`EthereumHardfork::Eip7805`] is active at a given timestamp.
+    fn is_eip7805_active_at_timestamp(&self, timestamp: u64) -> bool {
+        self.is_ethereum_fork_active_at_timestamp(EthereumHardfork::Eip7805, timestamp)
+    }
+
+    /// Convenience method to check if [`EthereumHardfork::Eip7805`] is active at a given block
+    /// number.
+    fn is_eip7805_active_at_block(&self, block_number: u64) -> bool {
+        self.is_ethereum_fork_active_at_block(EthereumHardfork::Eip7805, block_number)
+    }
+
     /// Convenience method to check if [`EthereumHardfork::Bpo1`] is active at a given timestamp.
     fn is_bpo1_active_at_timestamp(&self, timestamp: u64) -> bool {
         self.is_ethereum_fork_active_at_timestamp(EthereumHardfork::Bpo1, timestamp)
@@ -808,7 +819,7 @@ mod tests {
             "ShAnGhAI",
             "CaNcUn",
             "PrAguE",
-            "eIp7805",
+            "eip7805",
             "Bpo1",
             "BPO2",
             "bpo3",
