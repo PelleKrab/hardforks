@@ -65,6 +65,8 @@ hardfork!(
         Bpo5,
         /// Amsterdam: <https://eips.ethereum.org/EIPS/eip-7773>
         Amsterdam,
+        /// EIP-7805: <https://eips.ethereum.org/EIPS/eip-7805>
+        Eip7805,
     }
 );
 
@@ -404,7 +406,7 @@ impl EthereumHardfork {
     }
 
     /// Ethereum mainnet list of hardforks.
-    pub const fn mainnet() -> [(Self, ForkCondition); 18] {
+    pub const fn mainnet() -> [(Self, ForkCondition); 19] {
         [
             (Self::Frontier, ForkCondition::Block(MAINNET_FRONTIER_BLOCK)),
             (Self::Homestead, ForkCondition::Block(MAINNET_HOMESTEAD_BLOCK)),
@@ -431,6 +433,7 @@ impl EthereumHardfork {
             (Self::Shanghai, ForkCondition::Timestamp(MAINNET_SHANGHAI_TIMESTAMP)),
             (Self::Cancun, ForkCondition::Timestamp(MAINNET_CANCUN_TIMESTAMP)),
             (Self::Prague, ForkCondition::Timestamp(MAINNET_PRAGUE_TIMESTAMP)),
+            (Self::Eip7805, ForkCondition::Timestamp(MAINNET_PRAGUE_TIMESTAMP)),
         ]
     }
 
@@ -805,6 +808,7 @@ mod tests {
             "ShAnGhAI",
             "CaNcUn",
             "PrAguE",
+            "eIp7805",
             "Bpo1",
             "BPO2",
             "bpo3",
@@ -830,6 +834,7 @@ mod tests {
             EthereumHardfork::Shanghai,
             EthereumHardfork::Cancun,
             EthereumHardfork::Prague,
+            EthereumHardfork::Eip7805,
             EthereumHardfork::Bpo1,
             EthereumHardfork::Bpo2,
             EthereumHardfork::Bpo3,
