@@ -65,6 +65,8 @@ hardfork!(
         Bpo5,
         /// Amsterdam: <https://eips.ethereum.org/EIPS/eip-7773>
         Amsterdam,
+        /// EIP-7805: <https://eips.ethereum.org/EIPS/eip-7805>
+        Eip7805,
     }
 );
 
@@ -427,7 +429,7 @@ impl EthereumHardfork {
     }
 
     /// Ethereum mainnet list of hardforks.
-    pub const fn mainnet() -> [(Self, ForkCondition); 21] {
+    pub const fn mainnet() -> [(Self, ForkCondition); 22] {
         [
             (Self::Frontier, ForkCondition::Block(MAINNET_FRONTIER_BLOCK)),
             (Self::Homestead, ForkCondition::Block(MAINNET_HOMESTEAD_BLOCK)),
@@ -457,6 +459,7 @@ impl EthereumHardfork {
             (Self::Osaka, ForkCondition::Timestamp(MAINNET_OSAKA_TIMESTAMP)),
             (Self::Bpo1, ForkCondition::Timestamp(MAINNET_BPO1_TIMESTAMP)),
             (Self::Bpo2, ForkCondition::Timestamp(MAINNET_BPO2_TIMESTAMP)),
+            (Self::Eip7805, ForkCondition::Never),
         ]
     }
 
@@ -809,6 +812,12 @@ pub trait EthereumHardforks {
     /// Convenience method to check if [`EthereumHardfork::Bpo5`] is active at a given timestamp.
     fn is_bpo5_active_at_timestamp(&self, timestamp: u64) -> bool {
         self.is_ethereum_fork_active_at_timestamp(EthereumHardfork::Bpo5, timestamp)
+    }
+
+    /// Convenience method to check if [`EthereumHardfork::Eip7805`] is active at a given
+    /// timestamp.
+    fn is_eip7805_active_at_timestamp(&self, timestamp: u64) -> bool {
+        self.is_ethereum_fork_active_at_timestamp(EthereumHardfork::Eip7805, timestamp)
     }
 }
 
